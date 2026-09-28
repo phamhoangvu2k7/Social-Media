@@ -1,13 +1,12 @@
 package com.example.facebook.controller;
 
+import com.example.facebook.dto.request.UpdateProfileRequest;
 import com.example.facebook.dto.response.UserResponse;
 import com.example.facebook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -19,6 +18,15 @@ public class UserController {
     public ResponseEntity<UserResponse> getMyProfile(Authentication authentication){
         String email = authentication.getName();
         UserResponse response = userService.getMyProfile(email);
+        return ResponseEntity.ok(response);
+    }
+
+    @PatchMapping("/me")
+    public ResponseEntity<UserResponse> updateMyProfile(
+            Authentication authentication,
+            @RequestBody UpdateProfileRequest request) {
+        String email = authentication.getName();
+        UserResponse response = userService.updateMyProfile(email, request);
         return ResponseEntity.ok(response);
     }
 }
