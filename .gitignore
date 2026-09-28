@@ -34,3 +34,4 @@ build/
 .env
 .postman
 postman/
+NOTE.md
