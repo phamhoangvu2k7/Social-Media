@@ -3,8 +3,8 @@ package com.example.facebook.dto.response;
 import com.example.facebook.enums.Gender;
 import lombok.*;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
@@ -20,5 +20,5 @@ public class UserResponse {
     private LocalDate dateOfBirth;
     private String avatarUrl;
     private String bio;
-    private LocalDateTime createdAt;
+    private Instant createdAt;
 }
